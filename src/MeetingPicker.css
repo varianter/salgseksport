@@ -1,0 +1,16 @@
+.meeting-name {
+    width: 20rem;
+}
+
+td {
+    width: 6rem;
+}
+
+h3 {
+    margin-top: 2.5rem;
+    margin-bottom: .6rem;
+}
+
+a, a:visited {
+    color: black;
+}

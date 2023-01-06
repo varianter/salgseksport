@@ -1,0 +1,207 @@
+@import '~@variant/profile/lib/colors/index.module.css';
+@import '~@variant/profile/lib/typography/index.module.css';
+
+.App {
+  text-align: center;
+}
+
+body {
+  font: 13pt Arial;
+  line-height: 1.3;
+  color: #000;
+  width: 1000px;
+  margin: 2rem auto;
+  background-color: var(--color-secondary4__tint3);
+}
+
+.heading {
+  margin-bottom: 2rem;
+}
+
+label {
+  margin-right: 2rem ;
+}
+
+.formElements{
+  margin-bottom: 2rem;
+}
+
+.credentials {
+  padding: 1rem;
+  border: var(--color-secondary1__tint4) solid;
+  border-radius: 1rem;
+  margin: 2rem 0;
+
+}
+
+
+.container {
+  padding: 1rem;
+  border: var(--color-secondary1__tint4) solid;
+  border-radius: 1rem;
+  
+}
+
+h1 {
+  font-size: 24pt;
+}
+h2 {
+  font-size: 20pt;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+h3 {
+  font-size: 16pt;
+  font-weight:500
+}
+
+
+h4 {
+  font-family: "Graphik Web", Arial, sans-serif;
+  font-size: 14pt;
+}    
+
+h3, h4 {
+  margin-top: 25px;
+}    
+  
+.closeButton {
+  float: right;
+  font-size: 1.6rem;
+  margin: -.6rem ;
+  cursor: pointer;
+}
+
+.okButton {
+  float: right;
+  font-size: 1.6rem;
+  margin: -1.8rem 0;
+  cursor: pointer;
+}
+
+
+
+.showButton {
+  float: right;
+  font-size: 2.2rem;
+  margin: -4.5rem 0;
+  cursor: pointer;
+}
+
+
+.link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.matter-type {
+  margin-top: -.5rem;
+  font-weight: bold;
+  text-align: right;
+}
+
+
+
+.matter {
+  break-inside:avoid;
+}
+
+.matter-heading {
+  margin-top: 8rem;
+}
+
+.list-of-matters {
+  margin-top: 4rem;
+}
+
+dl {
+  margin: 0;
+  margin-top: 5px;
+}
+
+dt {
+  display:table-cell;
+  vertical-align:middle;
+  width: 4rem;
+  padding-right:5px;
+}
+
+dd {
+  display:table-cell;
+  vertical-align:middle;
+  margin: 0;
+}
+
+
+
+@media print {
+ 
+  body{
+    width: inherit;
+    margin: inherit;
+    background-color: inherit;
+    border: inherit; 
+  
+  }
+
+
+  .heading {
+    display: none;
+  }
+
+  .closeButton {
+    display: none;
+  }
+  
+      
+  @page { margin: 2cm }
+  
+   
+  a {
+      page-break-inside:avoid
+  }
+
+  blockquote {
+      page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6 { page-break-after:avoid; 
+       page-break-inside:avoid }
+  img { page-break-inside:avoid; 
+       page-break-after:avoid; }
+  table, pre { page-break-inside:avoid }
+  ul, ol, dl  { page-break-before:avoid }
+      
+  a:link, a:visited, a {
+    background: transparent;
+    color: #520;
+    text-decoration: underline;
+  }
+
+  .matter-name {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  p { 
+    widows: 3; 
+    orphans: 3
+  }
+ 
+  p, address, li, dt, dd, blockquote {
+    font-size: 100%
+  }
+  
+  /* Zeichensatz fuer Code Beispiele */
+  code, pre { font-family: "Courier New", Courier, mono}
+  
+  ul, ol {
+    list-style: square; margin-left: 18pt;
+    margin-bottom: 20pt;    
+  }
+  
+  li {
+    line-height: 1.6em;
+  }    
+      
+}
