@@ -1,0 +1,74 @@
+@import '~@variant/profile/lib/colors/index.module.css';
+@import '~@variant/profile/lib/typography/index.module.css';
+
+.case-heading { 
+    flex-basis: 80%;
+}
+
+.labels {
+    flex-basis: 20%;
+}
+
+.labels span{
+    padding: 5px;
+    border-radius: 15px;
+    margin-right: .5rem;
+    background-color: lightgray;
+}
+
+.labels .blue{
+    background-color: blue;
+    color: white;
+}
+
+
+.labels .red{
+    background-color: red;
+    color: white;
+}
+
+.labels .green{
+    background-color: green;
+    color: white;
+}
+
+.labels .yellow{
+    background-color: gold;
+}
+
+
+.labels .orange{
+    background-color: orange;
+}
+
+
+.heading {
+    display: flex;
+    margin-top: 3rem;
+    margin-bottom: .5rem;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+.candidates {
+    padding: 12px;
+    font-size: 1rem;
+    background-color: bisque;
+    border-radius: 1rem;
+}
+
+.candidate-legend {
+    font-weight: bold;
+    font-size: 1rem;
+
+}
+
