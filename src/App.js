@@ -1,61 +1,65 @@
 import React , {useEffect, useState} from "react";
 import './App.css';
-import Credentials from './Credentials';
-import Meeting from "./Meeting";
-import MeetingPicker from "./MeetingPicker";
+import List from "./List";
+import { authorize, fetchLists } from "./TrelloService";
+import { format } from 'date-fns'
+
 
 export default function App() {
   const [apiCred, setApiCred] = useState(undefined);
-  const [meetingId, setMeetingId] = useState();
-  const [isMinnutes, setIsMinnutes] = useState(false);
-  const [showMeeting, setShowMeeting] = useState();
-
-
-  function handleCredChange(cred) {
-    localStorage.setItem("apiCred", cred);
-    setApiCred(cred);
-  }
-
-  async function handeMeetingPicked(meetingId, minutes) {
-    await setMeetingId(meetingId);
-    await setIsMinnutes(minutes);
-    setShowMeeting(true);
-  }
-
-  function closeMeeting(){
-    setShowMeeting(false);
-  }
+  const [lists, setLists] = useState([]);
 
   useEffect (() => {
-    setApiCred(localStorage.getItem("apiCred"));
+    async function getData(){
+      let json =  await fetchLists( apiCred);
+      setLists(json)
+    }
+    getData()
+  },[apiCred])
+
+ 
+  useEffect (() => {
+    setApiCred(localStorage.getItem("api-sales-cred"));
   },[])
-  let content;
+  
+  
+  async function setCred(cred){
+    await setApiCred(cred);
+    window.location.hash = "";  
+}
 
   if (!apiCred){
-    return (
-      <div className="heading"> <h1>Variants Styreportal</h1> 
-        <Credentials defaultOpen={true} handleCredChange={ handleCredChange} />
-      </div> 
-    )
+    let cred = localStorage.getItem("api-sales-cred");
+    const apiKey = 'cf063842e14021c0d2d0fdc485794b53'
+    if (cred) {
+      setCred(cred);
+    }
+    else if (window.location.hash){
+      const token = window.location.hash.substring(1).split('=')[1];
+      cred = 'key=' + apiKey + '&token=' + token;
+      localStorage.setItem("api-sales-cred", cred);
+      setCred(cred);
+    } else {
+      authorize(apiKey, "Variant Salgseksport")
+    }
   }
 
+  let content = []
   if (apiCred){
-    content = <MeetingPicker handeMeetingPicked={handeMeetingPicked} apiCred={apiCred} />
+    for (const list of lists){
+      if (list.name.substring(0,5) === "Leads") continue;
+      if (list.name === "KAM - ansvar for å legge inn på tavla") continue;
+      
+      content.push(<List apiCred={apiCred} name={list.name} id={list.id}/>)
+    }
   }
 
-  if (showMeeting) {
-    content = <Meeting close={closeMeeting} meetingId={meetingId} minutes={isMinnutes} apiCred={apiCred}/> 
-  }
-
+  const weeknr = format(new Date(),'I');
   return (
     <div>
-      <div className="heading"> <h1>Variants Styreportal</h1> </div> 
-      
-      <Credentials handleCredChange={ handleCredChange} />
+      <div className="heading"> <h1>Salgsstatus Uke {weeknr}</h1> </div> 
       <div className="container"> 
-        {content}    
-            
-            
+        {content}     
       </div>
     </div>  
   );

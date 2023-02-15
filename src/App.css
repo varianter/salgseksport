@@ -14,10 +14,6 @@ body {
   background-color: var(--color-secondary4__tint3);
 }
 
-.heading {
-  margin-bottom: 2rem;
-}
-
 label {
   margin-right: 2rem ;
 }
@@ -35,20 +31,12 @@ label {
 }
 
 
-.container {
-  padding: 1rem;
-  border: var(--color-secondary1__tint4) solid;
-  border-radius: 1rem;
-  
-}
-
 h1 {
   font-size: 24pt;
 }
 h2 {
   font-size: 20pt;
-  margin-bottom: 1.5rem;
-  margin-top: 0;
+  margin-top: 3rem;
 }
 h3 {
   font-size: 16pt;
@@ -65,6 +53,9 @@ h3, h4 {
   margin-top: 25px;
 }    
   
+.list-heading{
+  border-bottom: solid 2px black;
+}
 .closeButton {
   float: right;
   font-size: 1.6rem;
@@ -133,6 +124,11 @@ dd {
 }
 
 
+a,a:visited {
+  color: #000;
+}
+
+
 
 @media print {
  
@@ -192,8 +188,7 @@ dd {
     font-size: 100%
   }
   
-  /* Zeichensatz fuer Code Beispiele */
-  code, pre { font-family: "Courier New", Courier, mono}
+
   
   ul, ol {
     list-style: square; margin-left: 18pt;

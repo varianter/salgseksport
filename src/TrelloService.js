@@ -1,27 +1,28 @@
-export async function fetchCorporates(apiCred) {
-    let result =  await fetch('https://api.trello.com/1/organizations/variantsstyrerom/boards?' + apiCred);
-    let boards = await result.json();
-    const corps = [];
-    for (let board of boards){
-      let mResult = await fetch('https://api.trello.com/1/boards/' + board.id + '/lists?' + apiCred);
-      let meetings = await mResult.json();
-      board.meetings = meetings;
-      corps.push(board);
-    } 
-    return corps;
+
+export async function fetchLists( apiCred) {
+    let response = await fetch('https://api.trello.com/1/boards/kO5kbMNf/lists?' + apiCred);
+    let lists = await response.json();     
+    return lists;
 }
-  
-export async function fetchMeetingMatters(listId, apiCred) {
+
+export async function fetchCases(listId, apiCred) {
     let response = await fetch('https://api.trello.com/1/lists/'+ listId + '/cards?' + apiCred);
     let cards = await response.json();     
-    for( const card of cards ){
-         card.attachments = await fetchMeetingMattersAttacments(card.id, apiCred);
-    }
     return cards;
 }
+
+
+export  function authorize(apiKey, appName) {
+    const host = window.location.protocol + "//" + window.location.host;
+    
+    window.location.href= 'https://api.trello.com/1/authorize/?expiration=1day&name=' + appName + 
+        '&return_url=' + host + 
+        '&scope=read&response_type=token&key=' + apiKey;
+}
+
   
-async function fetchMeetingMattersAttacments(cardId, apiCred) {
-    let response = await fetch('https://api.trello.com/1/cards/'+ cardId + '/attachments?' + apiCred);
-    let json = await response.json(); 
-    return json;
+export async function fetchCustomFields(cardId, apiCred) {
+    let response = await fetch('https://api.trello.com/1/cards/'+ cardId + '/customFieldItems?' + apiCred);
+    let cards = await response.json();     
+    return cards;
 }
