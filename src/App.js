@@ -11,14 +11,22 @@ export default function App() {
 
   useEffect (() => {
     async function getData(){
-      let json =  await fetchLists( apiCred);
-      setLists(json)
+      try {
+        let json =  await fetchLists( apiCred);
+        setLists(json)
+      } catch (e)
+      {
+        console.log(e);
+        localStorage.removeItem("api-sales-cred");
+        setApiCred(false);
+        
+      }
     }
     getData()
   },[apiCred])
 
  
-  useEffect (() => {
+  useEffect (()  => {
     setApiCred(localStorage.getItem("api-sales-cred"));
   },[])
   
@@ -26,7 +34,7 @@ export default function App() {
   async function setCred(cred){
     await setApiCred(cred);
     window.location.hash = "";  
-}
+  }
 
   if (!apiCred){
     let cred = localStorage.getItem("api-sales-cred");

@@ -1,6 +1,7 @@
 
 export async function fetchLists( apiCred) {
     let response = await fetch('https://api.trello.com/1/boards/kO5kbMNf/lists?' + apiCred);
+    if (response.status === 401) throw new Error("Not authorized");
     let lists = await response.json();     
     return lists;
 }
