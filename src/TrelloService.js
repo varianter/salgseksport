@@ -16,7 +16,7 @@ export async function fetchCases(listId, apiCred) {
 export  function authorize(apiKey, appName) {
     const host = window.location.protocol + "//" + window.location.host;
     
-    window.location.href= 'https://api.trello.com/1/authorize/?expiration=1day&name=' + appName + 
+    window.location.href= 'https://trello.com/1/authorize/?expiration=1day&name=' + appName + 
         '&return_url=' + host + 
         '&scope=read&response_type=token&key=' + apiKey;
 }
